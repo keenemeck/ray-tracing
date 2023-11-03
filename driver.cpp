@@ -1,20 +1,21 @@
 #include <iostream>
 
-using std::cout;
+#include "vec3.h"
+
 
 void ppm() {
 
     const int rows = 256;
     const int cols = 256;
 
-    cout << "P3\n" << cols << ' ' << rows << '\n' << 255 << '\n';
+    std::cout << "P3\n" << cols << ' ' << rows << '\n' << 255 << '\n';
 
     for (int i = 0; i < rows; i++) {
         std::clog << rows - i << " rows remaining.\n";
         for (int j = 0; j < cols; j++) {
-            cout << i << ' ' << j << ' ' << i << ' ';
+            std::cout << i << ' ' << j << ' ' << i << ' ';
         }
-        cout << '\n';
+        std::cout << '\n';
     }
 
     std::clog << "Done.\n";
@@ -25,6 +26,12 @@ void ppm() {
 int main() {
 
     ppm();
+
+    Vector vec(1, 2, 3);
+
+    vec.set_i(4);
+
+    std::clog << vec.get_i() << vec.get_j() << vec.get_k();
     
     return 0;
     
