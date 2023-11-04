@@ -1,6 +1,8 @@
 #ifndef vec3_h
 #define vec3_h
 
+#include <iostream>
+
 class Vector {
 
 private:
@@ -44,6 +46,8 @@ public:
 };
 
 class Color {
+
+friend std::ostream& operator<<(std::ostream& stream, Color& c);
 
 private:
 

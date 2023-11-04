@@ -34,6 +34,14 @@ void Point::set_z(double z) { this->z = z; }
 Color::Color() : r(0), g(0), b(0) {}
 Color::Color(double _r, double _g, double _b) : r(_r), g(_g), b(_b) {}
 
+// Override << operator
+std::ostream& operator<<(std::ostream& stream, Color& color) {
+
+    stream << color.r << ' ' << color.g << ' ' << color.b << ' ';
+    return stream;
+
+}
+
 // Colors getters
 double Color::get_r() { return r; }
 double Color::get_g() { return g; }
