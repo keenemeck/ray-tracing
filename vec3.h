@@ -1,8 +1,6 @@
 #ifndef vec3_h
 #define vec3_h
 
-#include <iostream>
-
 class Vector {
 
 private:
@@ -22,49 +20,8 @@ public:
     void set_j(double j);
     void set_k(double k);
 
-};
-
-class Point {
-
-private:
-
-    double x, y, z;
-
-public:
-
-    Point();
-    Point(double x, double y, double z);
-
-    double get_x();
-    double get_y();
-    double get_z();
-
-    void set_x(double x);
-    void set_y(double y);
-    void set_z(double z);
-
-};
-
-class Color {
-
-friend std::ostream& operator<<(std::ostream& stream, Color& c);
-
-private:
-
-    double r, g, b;
-
-public:
-
-    Color();
-    Color(double r, double g, double b);
-
-    double get_r();
-    double get_g();
-    double get_b();
-
-    void set_r(double r);
-    void set_g(double g);
-    void set_b(double b);
+    Vector operator*(int x);
+    Point to_point();
 
 };
 

@@ -1,6 +1,8 @@
 #include <iostream>
 
 #include "vec3.h"
+#include "point.h"
+#include "color.h"
 
 
 void ppm() {
