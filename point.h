@@ -1,7 +1,15 @@
 #ifndef point_h
 #define point_h
 
+#include <iostream>
+
+#include "vec3.h"
+
+class Vector;
+
 class Point {
+
+friend std::ostream& operator<<(std::ostream& stream, Point& p);
 
 private:
 
@@ -21,6 +29,9 @@ public:
     void set_z(double z);
 
     Point operator+(Point p);
+    Point operator-(Point p);
+
+    Vector to_vector();
 
 };
 

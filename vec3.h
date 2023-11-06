@@ -1,6 +1,10 @@
 #ifndef vec3_h
 #define vec3_h
 
+#include "point.h"
+
+class Point;
+
 class Vector {
 
 private:
@@ -20,8 +24,13 @@ public:
     void set_j(double j);
     void set_k(double k);
 
-    Vector operator*(int x);
+    Vector operator+(Vector v);
+    Vector operator-(Vector v);
+    Vector operator*(double x);
+    Vector operator/(double x);
     Point to_point();
+
+    Vector unit();
 
 };
 

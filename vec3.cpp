@@ -1,5 +1,4 @@
 #include "vec3.h"
-#include "point.h"
 
 // Default constructors for vectors
 Vector::Vector() : i(0), j(0), k(0) {}
@@ -15,6 +14,16 @@ void Vector::set_i(double i) { this->i = i; }
 void Vector::set_j(double j) { this->j = j; }
 void Vector::set_k(double k) { this->k = k; }
 
-Vector Vector::operator*(int x) { return {i * x, j * x, k * x}; }
+Vector Vector::operator+(Vector v) { return {i + v.i, j + v.j, k + v.k}; }
+Vector Vector::operator-(Vector v) { return {i - v.i, j - v.j, k - v.k}; }
+Vector Vector::operator*(double x) { return {i * x, j * x, k * x}; }
+Vector Vector::operator/(double x) { return {i / x, j / x, k / x}; }
 
 Point Vector::to_point() { return {i, j, k}; }
+
+Vector Vector::unit() {
+
+    double magnitude = i * i + j * j + k * k;
+    return {i / magnitude, j / magnitude, k / magnitude};
+
+}

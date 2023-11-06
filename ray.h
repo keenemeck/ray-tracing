@@ -2,8 +2,12 @@
 #define ray_h
 
 #include "vec3.h"
+#include "point.h"
+#include "color.h"
 
 class Ray {
+
+friend Color ray_color(Ray& r);
 
 public:
 
