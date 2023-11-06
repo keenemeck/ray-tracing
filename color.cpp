@@ -21,3 +21,5 @@ double Color::get_b() { return b; }
 void Color::set_r(double r) { this->r = r; }
 void Color::set_g(double g) { this->g = g; }
 void Color::set_b(double b) { this->b = b; }
+
+Color Color::operator*(double x) { return {r * x, g * x, b * x}; }

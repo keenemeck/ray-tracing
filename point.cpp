@@ -7,7 +7,7 @@ Point::Point(double _x, double _y, double _z) : x(_x), y(_y), z(_z) {}
 // Override << operator
 std::ostream& operator<<(std::ostream& stream, Point& point) {
 
-    stream << point.x << ' ' << point.z << ' ' << point.y << ' ';
+    stream << point.x << ' ' << point.y << ' ' << point.z << ' ';
     return stream;
 
 }

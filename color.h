@@ -24,6 +24,8 @@ public:
     void set_g(double g);
     void set_b(double b);
 
+    Color operator*(double x);
+
 };
 
 #endif

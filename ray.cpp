@@ -13,12 +13,18 @@ Vector Ray::get_direction() { return direction; }
 
 Color ray_color(Ray& r) {
 
-    double a = r.get_direction().get_j() / 2 + 0.5;
+    Vector unit_vector = r.get_direction().unit();
 
-    double blendedRed = (1 - a) * 120.0 + a * 206.0;
-    double blendedGreen = (1 - a) * 47.0 + a * 184.0;
-    double blendedBlue = (1 - a) * 64.0 + a * 136.0;
+    double a = unit_vector.get_j() / 2 + 0.5;
 
-    return {round(blendedRed), round(blendedGreen), round(blendedBlue)};
+    double redStart = 90, redEnd = 255;
+    double greenStart = 183, greenEnd = 255;
+    double blueStart = 230, blueEnd = 255;
+
+    int blendedRed = (1 - a) * redEnd + a * redStart;
+    int blendedGreen = (1 - a) * greenEnd + a * greenStart;
+    int blendedBlue = (1 - a) * blueEnd + a * blueStart;
+
+    return {blendedRed * 1.0, blendedGreen * 1.0, blendedBlue * 1.0};
 
 }

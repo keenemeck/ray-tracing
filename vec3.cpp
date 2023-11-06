@@ -4,6 +4,14 @@
 Vector::Vector() : i(0), j(0), k(0) {}
 Vector::Vector(double _i, double _j, double _k) : i(_i), j(_j), k(_k) {}
 
+// Override << operator
+std::ostream& operator<<(std::ostream& stream, Vector vec) {
+
+    stream << vec.i << "i " << vec.j << "j " << vec.k << "k";
+    return stream;
+
+}
+
 // Vector getters
 double Vector::get_i() { return i; }
 double Vector::get_j() { return j; }
@@ -23,7 +31,9 @@ Point Vector::to_point() { return {i, j, k}; }
 
 Vector Vector::unit() {
 
-    double magnitude = i * i + j * j + k * k;
+    double magnitude = sqrt(i * i + j * j + k * k);
     return {i / magnitude, j / magnitude, k / magnitude};
 
 }
+
+double Vector::dot(Vector v) { return i * v.i + j * v.j + k * v.k; }

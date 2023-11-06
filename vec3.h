@@ -2,10 +2,13 @@
 #define vec3_h
 
 #include "point.h"
+#include <iostream>
 
 class Point;
 
 class Vector {
+
+friend std::ostream& operator<<(std::ostream& stream, Vector vec);
 
 private:
 
@@ -31,6 +34,7 @@ public:
     Point to_point();
 
     Vector unit();
+    double dot(Vector V);
 
 };
 
