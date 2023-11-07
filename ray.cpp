@@ -11,19 +11,22 @@ Point Ray::get_origin() { return origin; }
 
 Vector Ray::get_direction() { return direction; }
 
-Color ray_color(Ray& r, std::vector<Sphere>& spheres) {
+Color ray_color(Ray& r, std::vector<Sphere>& spheres, int bounces) {
 
-    Interval interval(0, INFINITY);
+    Interval interval(0.01, INFINITY);
     HitInfo hit;
 
-    // if hit
     if (ray_collide(r, interval, spheres, hit)) {
         
         Vector n = hit.get_normal();
         Vector random_n = random_unit_normal_face(n);
-        Color color = {random_n.get_i() + 1, random_n.get_j() + 1, random_n.get_k() + 1};
-        //Ray new_ray(hit.get_point(), random_n);
-        return color * 127.5;
+
+        Ray new_ray(hit.get_point(), random_n);
+
+        if (bounces <= 0) return Color(0,0,0);
+
+        return ray_color(new_ray, spheres, bounces - 1) * 1;
+        
     }
 
     Vector unit_vector = r.get_direction().unit();

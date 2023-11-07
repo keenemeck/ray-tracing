@@ -31,13 +31,9 @@ bool ray_collide(Ray& r, Interval& interval, std::vector<Sphere>& spheres, HitIn
             double t = (-h - sqrt(discrim)) / a;
 
             // if first root out of range, try second root
-            if (t < interval.get_min() || t > interval.get_max()) {
-                
-                t = (-h + sqrt(discrim)) / a;
-            
-            }
+            if (t <= interval.get_min() || t >= interval.get_max()) t = (-h + sqrt(discrim)) / a;
 
-            if (t >= interval.get_min() && t <= interval.get_max()) {
+            if (t > interval.get_min() && t < interval.get_max()) {
 
                 collide = true;
 

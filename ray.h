@@ -14,7 +14,7 @@ class Sphere;
 
 class Ray {
 
-friend Color ray_color(Ray& r, std::vector<Sphere>& spheres);
+friend Color ray_color(Ray& r, std::vector<Sphere>& spheres, int bounces);
 
 public:
 
