@@ -45,7 +45,7 @@ void Camera::render(std::vector<Sphere>& spheres) {
 
                 Ray ray = get_ray(i, j);
 
-                Color temp = ray_color(ray, spheres, 100);
+                Color temp = ray_color(ray, spheres, 10);
 
                 color = color + temp;
 

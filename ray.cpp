@@ -19,13 +19,13 @@ Color ray_color(Ray& r, std::vector<Sphere>& spheres, int bounces) {
     if (ray_collide(r, interval, spheres, hit)) {
         
         Vector n = hit.get_normal();
-        Vector random_n = random_unit_normal_face(n);
+        Vector direction = n + random_unit_vector();
 
-        Ray new_ray(hit.get_point(), random_n);
+        Ray new_ray(hit.get_point(), direction);
 
-        if (bounces <= 0) return Color(0,0,0);
+        if (bounces <= 0) return Color(0, 0, 0);
 
-        return ray_color(new_ray, spheres, bounces - 1) * 1;
+        return ray_color(new_ray, spheres, bounces - 1) * 0.9;
         
     }
 
