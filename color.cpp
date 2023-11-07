@@ -4,14 +4,6 @@
 Color::Color() : r(0), g(0), b(0) {}
 Color::Color(double _r, double _g, double _b) : r(_r), g(_g), b(_b) {}
 
-// Override << operator
-std::ostream& operator<<(std::ostream& stream, Color& color) {
-
-    stream << round(color.r) << ' ' << round(color.g) << ' ' << round(color.b) << ' ';
-    return stream;
-
-}
-
 // Colors getters
 double Color::get_r() { return r; }
 double Color::get_g() { return g; }
@@ -23,3 +15,18 @@ void Color::set_g(double g) { this->g = g; }
 void Color::set_b(double b) { this->b = b; }
 
 Color Color::operator*(double x) { return {r * x, g * x, b * x}; }
+Color Color::operator+(Color& c) { return {r + c.r, g + c.g, b + c.b}; }
+
+void Color::write_color(std::ostream &out, int samples) {
+
+    double factor = 1.0 / samples;
+
+    r *= factor;
+    b *= factor;
+    g *= factor;
+
+    Interval rgb(0, 255);
+
+    out << round(rgb.clamp(r)) << ' ' << round(rgb.clamp(g)) << ' ' << round(rgb.clamp(b)) << ' ';
+
+}

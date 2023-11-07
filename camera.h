@@ -5,22 +5,29 @@
 #include "point.h"
 #include "color.h"
 #include "sphere.h"
+#include "ray.h"
 
 #include <vector>
+#include <random>
 
 class Camera {
 
 public:
 
     Camera();
+    Camera(double ratio, int height, int samples);
 
     void initialize();
     void render(std::vector<Sphere>& spheres);
 
+    double rand();
+
+    Ray get_ray(int i, int j);
+
 private:
 
     double aspect_ratio, focal_length, viewport_height;
-    int image_height, image_width;
+    int image_height, image_width, samples;
     Point pixel_00, camera_center;
     Vector du, dv;
 

@@ -11,6 +11,8 @@ public:
     double get_min();
     double get_max();
 
+    double clamp(double x);
+
 
 private:
 

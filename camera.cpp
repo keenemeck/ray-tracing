@@ -1,8 +1,12 @@
 #include "camera.h"
 
-Camera::Camera() : aspect_ratio(16.0 / 9.0), focal_length(1.0), viewport_height(2.0), image_height(400) {}
+Camera::Camera() : aspect_ratio(16.0 / 9.0), image_height(400), samples(100) {}
+Camera::Camera(double ratio, int height, int _samples) : aspect_ratio(ratio), image_height(height), samples(_samples) {}
 
 void Camera::initialize() {
+
+    focal_length = 1.0;
+    viewport_height = 2.0;
 
     double viewport_width = viewport_height * aspect_ratio;
     image_width = image_height * aspect_ratio;
@@ -35,23 +39,31 @@ void Camera::render(std::vector<Sphere>& spheres) {
 
         for (int j = 0; j < image_width; j++) {  
 
-            Point pixel_center = pixel_00 + (du * j).to_point() + (dv * i).to_point();
-            Vector direction = (pixel_center - camera_center).to_vector();
-            Ray ray(camera_center, direction);
+            Color color;
 
-            HitInfo hit;
-            HitInfo closest_hit;
+            for (int k = 0; k < samples; k++) {
 
-            for (auto sphere: spheres) {
+                Ray ray = get_ray(i, j);
 
-                bool collide = sphere.ray_collide(ray, interval, hit);
+                HitInfo hit;
+                HitInfo closest_hit;
 
-                if (collide && hit.get_t() < closest_hit.get_t()) closest_hit = hit;
-                
+                for (auto sphere: spheres) {
+
+                    bool collide = sphere.ray_collide(ray, interval, hit);
+
+                    if (collide && hit.get_t() < closest_hit.get_t()) closest_hit = hit;
+                    
+                }
+
+                get_ray(i, j);
+
+                Color temp = ray_color(ray, closest_hit);
+                color = color + temp;
+
             }
 
-            Color color = ray_color(ray, closest_hit);
-            std::cout << color;
+            color.write_color(std::cout, samples);
 
         }
 
@@ -59,5 +71,24 @@ void Camera::render(std::vector<Sphere>& spheres) {
     }
 
     std::clog << "Done.\n";
+
+}
+
+double Camera::rand() {
+
+    static std::uniform_real_distribution<double> dist(0, 1);
+    static std::mt19937 gen;
+    return dist(gen);
+
+}
+
+Ray Camera::get_ray(int i, int j) {
+
+    Vector sampleOffset = du * (-0.5 + rand()) + dv * (-0.5 + rand());
+    Point pixel_center = pixel_00 + (du * j).to_point() + (dv * i).to_point();
+
+    Point pixel_sample = sampleOffset.to_point() + pixel_center;
+
+    return Ray(camera_center, (pixel_sample - camera_center).to_vector());
 
 }

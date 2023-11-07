@@ -1,15 +1,11 @@
 #ifndef color_h
 #define color_h
 
+#include "interval.h"
+
 #include <iostream>
 
 class Color {
-
-friend std::ostream& operator<<(std::ostream& stream, Color& c);
-
-private:
-
-    double r, g, b;
 
 public:
 
@@ -24,7 +20,15 @@ public:
     void set_g(double g);
     void set_b(double b);
 
+    void write_color(std::ostream &out, int samples);
+
     Color operator*(double x);
+    Color operator+(Color& c);
+
+private:
+
+    double r, g, b;
+
 
 };
 
