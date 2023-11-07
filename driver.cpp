@@ -57,9 +57,11 @@ int main() {
             HitInfo hit;
             HitInfo closest_hit;
 
+            Interval interval(0, INFINITY);
+
             for (auto sphere: spheres) {
 
-                bool collide = sphere.ray_collide(ray, 0, INFINITY, hit);
+                bool collide = sphere.ray_collide(ray, interval, hit);
 
                 if (collide) {
 
