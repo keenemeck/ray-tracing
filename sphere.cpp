@@ -8,7 +8,7 @@ Sphere::Sphere(Point _origin, double _radius) : origin(_origin), radius(_radius)
 Point Sphere::get_origin() { return origin; }
 double Sphere::get_radius() { return radius; }
 
-double Sphere::ray_collide(Ray& r) {
+bool Sphere::ray_collide(Ray& r, double t_min, double t_max, HitInfo& hit) {
 
     Vector a_minus_c = (r.get_origin() - origin).to_vector();
 
@@ -18,6 +18,32 @@ double Sphere::ray_collide(Ray& r) {
 
     double discrim = h * h - a * c;
 
-    return discrim < 0 ? -1 : (-h - sqrt(discrim)) / a;
+    if (discrim < 0) return false;
+
+    double discrim_sqrt = sqrt(discrim);
+
+    double t = (-h - sqrt(discrim)) / a;
+
+    if (t < t_min || t > t_max) {
+        t = (-h + sqrt(discrim)) / a;
+        if (t < t_min || t > t_max) return false;
+    }
+
+    Point p = r.pt(t);
+    Vector n = (p - origin).to_vector().unit();
+
+    hit.set_point(p);
+    hit.set_t(t);
+
+    if (r.get_direction().dot(n) > 0) {
+        hit.set_front(true);
+        n = -n;
+        
+    } else hit.set_front(false);
+    
+    hit.set_normal(n);
+
+
+    return true;
 
 }

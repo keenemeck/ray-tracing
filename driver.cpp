@@ -1,10 +1,12 @@
 #include <iostream>
+#include <vector>
 
 #include "vec3.h"
 #include "point.h"
 #include "color.h"
 #include "ray.h"
 #include "sphere.h"
+#include "hitInfo.h"
 
 
 int main() {
@@ -31,7 +33,13 @@ int main() {
 
     Point pixel_00 = viewport_q + (du / 2).to_point() + (dv / 2).to_point();
 
-    Sphere sphere({0, 0, -1}, 0.5);
+
+    std::vector<Sphere> spheres;
+    
+
+    spheres.push_back({{0, 0, -1}, 0.5});
+    spheres.push_back({{0, -100.5, -1}, 100});
+    
 
     // Draw ppm
     std::cout << "P3\n" << image_width << ' ' << image_height << '\n' << 255 << '\n';
@@ -46,17 +54,22 @@ int main() {
             Vector direction = (pixel_center - camera_center).to_vector();
             Ray ray(camera_center, direction);
 
-            double t = sphere.ray_collide(ray);
+            HitInfo hit;
+            HitInfo closest_hit;
 
-            
+            for (auto sphere: spheres) {
 
-            Color color = {125, 94, 23};
+                bool collide = sphere.ray_collide(ray, 0, INFINITY, hit);
 
-            if (t != -1) {
-                Vector normal = ((ray.pt(t) - sphere.get_origin()).to_vector()).unit();
-                color = {round((normal.get_i() + 1) * 127.5), round((normal.get_j() + 1) * 127.5), round((normal.get_k() + 1) * 127.5)};
-            } else color = ray_color(ray);
-            
+                if (collide) {
+
+                    if (hit.get_t() < closest_hit.get_t()) closest_hit = hit;
+
+                }
+                   
+            }
+
+            Color color = ray_color(ray, closest_hit);
             std::cout << color;
 
         }

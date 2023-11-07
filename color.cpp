@@ -7,7 +7,7 @@ Color::Color(double _r, double _g, double _b) : r(_r), g(_g), b(_b) {}
 // Override << operator
 std::ostream& operator<<(std::ostream& stream, Color& color) {
 
-    stream << color.r << ' ' << color.g << ' ' << color.b << ' ';
+    stream << round(color.r) << ' ' << round(color.g) << ' ' << round(color.b) << ' ';
     return stream;
 
 }

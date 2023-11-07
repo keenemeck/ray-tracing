@@ -3,6 +3,7 @@
 
 #include "point.h"
 #include "ray.h"
+#include "hitInfo.h"
 
 
 class Sphere {
@@ -15,7 +16,7 @@ public:
     Point get_origin();
     double get_radius();
 
-    double ray_collide(Ray& r);
+    bool ray_collide(Ray& r, double t_min, double t_max, HitInfo& hit);
 
 private:
 

@@ -9,6 +9,7 @@ class Point;
 class Vector {
 
 friend std::ostream& operator<<(std::ostream& stream, Vector vec);
+friend Vector operator-(Vector vec);
 
 private:
 

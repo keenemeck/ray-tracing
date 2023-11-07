@@ -12,6 +12,8 @@ std::ostream& operator<<(std::ostream& stream, Vector vec) {
 
 }
 
+Vector operator-(Vector vec) { return {-vec.i, -vec.j, -vec.k}; }
+
 // Vector getters
 double Vector::get_i() { return i; }
 double Vector::get_j() { return j; }
