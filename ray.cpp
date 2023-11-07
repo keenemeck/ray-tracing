@@ -13,9 +13,12 @@ Vector Ray::get_direction() { return direction; }
 
 Color ray_color(Ray& r, HitInfo& hit) {
 
+    // if hit
     if (hit.get_t() != INFINITY) {
         Vector n = hit.get_normal();
-        Color color = {n.get_i() + 1, n.get_j() + 1, n.get_k() + 1};
+        Vector random_n = random_unit_normal_face(n);
+        Color color = {random_n.get_i() + 1, random_n.get_j() + 1, random_n.get_k() + 1};
+        Ray new_ray(hit.get_point(), random_n);
         return color * 127.5;
     }
 
@@ -23,13 +26,12 @@ Color ray_color(Ray& r, HitInfo& hit) {
 
     double a = unit_vector.get_j() / 2 + 0.5;
 
-    double redStart = 90, redEnd = 255;
-    double greenStart = 183, greenEnd = 255;
-    double blueStart = 230, blueEnd = 255;
+    Color c1(90, 183, 230);
+    Color c2(255, 255, 255);
 
-    double blendedRed = (1 - a) * redEnd + a * redStart;
-    double blendedGreen = (1 - a) * greenEnd + a * greenStart;
-    double blendedBlue = (1 - a) * blueEnd + a * blueStart;
+    double blendedRed = (1 - a) * c2.get_r() + a * c1.get_r();
+    double blendedGreen = (1 - a) * c2.get_g() + a * c1.get_g();
+    double blendedBlue = (1 - a) * c2.get_b() + a * c1.get_b();
 
     return {blendedRed, blendedGreen, blendedBlue};
 

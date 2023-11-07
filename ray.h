@@ -5,6 +5,7 @@
 #include "point.h"
 #include "color.h"
 #include "hitInfo.h"
+#include "rand.h"
 
 class Ray {
 

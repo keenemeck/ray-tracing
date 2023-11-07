@@ -56,8 +56,6 @@ void Camera::render(std::vector<Sphere>& spheres) {
                     
                 }
 
-                get_ray(i, j);
-
                 Color temp = ray_color(ray, closest_hit);
                 color = color + temp;
 
@@ -74,17 +72,9 @@ void Camera::render(std::vector<Sphere>& spheres) {
 
 }
 
-double Camera::rand() {
-
-    static std::uniform_real_distribution<double> dist(0, 1);
-    static std::mt19937 gen;
-    return dist(gen);
-
-}
-
 Ray Camera::get_ray(int i, int j) {
 
-    Vector sampleOffset = du * (-0.5 + rand()) + dv * (-0.5 + rand());
+    Vector sampleOffset = du * (-0.5 + random_double()) + dv * (-0.5 + random_double());
     Point pixel_center = pixel_00 + (du * j).to_point() + (dv * i).to_point();
 
     Point pixel_sample = sampleOffset.to_point() + pixel_center;

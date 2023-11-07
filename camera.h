@@ -6,9 +6,9 @@
 #include "color.h"
 #include "sphere.h"
 #include "ray.h"
+#include "rand.h"
 
 #include <vector>
-#include <random>
 
 class Camera {
 
@@ -20,8 +20,6 @@ public:
     void initialize();
     void render(std::vector<Sphere>& spheres);
 
-    double rand();
-
     Ray get_ray(int i, int j);
 
 private:
@@ -32,6 +30,5 @@ private:
     Vector du, dv;
 
 };
-
 
 #endif
