@@ -8,41 +8,57 @@ Sphere::Sphere(Point _origin, double _radius) : origin(_origin), radius(_radius)
 Point Sphere::get_origin() { return origin; }
 double Sphere::get_radius() { return radius; }
 
-bool Sphere::ray_collide(Ray& r, Interval& interval, HitInfo& hit) {
+bool ray_collide(Ray& r, Interval& interval, std::vector<Sphere>& spheres, HitInfo& closest_hit) {
 
-    Vector a_minus_c = (r.get_origin() - origin).to_vector();
+    HitInfo hit;
+    bool collide = false;
 
-    double a = r.get_direction().dot(r.get_direction());
-    double h = r.get_direction().dot(a_minus_c);
-    double c = a_minus_c.dot(a_minus_c) - radius * radius;
+    for (auto sphere: spheres) {      
+    
+        Vector a_minus_c = (r.get_origin() - sphere.get_origin()).to_vector();
 
-    double discrim = h * h - a * c;
+        double a = r.get_direction().dot(r.get_direction());
+        double h = r.get_direction().dot(a_minus_c);
+        double c = a_minus_c.dot(a_minus_c) - sphere.get_radius() * sphere.get_radius();
 
-    if (discrim < 0) return false;
+        double discrim = h * h - a * c;
 
-    double discrim_sqrt = sqrt(discrim);
+        // 1 or 2 roots exist
+        if (discrim >= 0) {
 
-    double t = (-h - sqrt(discrim)) / a;
+            double discrim_sqrt = sqrt(discrim);
 
-    if (t < interval.get_min() || t > interval.get_max()) {
-        t = (-h + sqrt(discrim)) / a;
-        if (t < interval.get_min() || t > interval.get_max()) return false;
+            double t = (-h - sqrt(discrim)) / a;
+
+            // if first root out of range, try second root
+            if (t < interval.get_min() || t > interval.get_max()) {
+                
+                t = (-h + sqrt(discrim)) / a;
+            
+            }
+
+            if (t >= interval.get_min() && t <= interval.get_max()) {
+
+                collide = true;
+
+                Point p = r.pt(t);
+                Vector n = (p - sphere.get_origin()).to_vector().unit();
+
+                hit.set_point(p);
+                hit.set_t(t);
+
+                if (r.get_direction().dot(n) > 0) {
+                    hit.set_front(true);
+                    n = -n;     
+                } else hit.set_front(false);
+                
+                hit.set_normal(n);
+
+                if (hit.get_t() < closest_hit.get_t()) closest_hit = hit;
+            }
+        }
     }
 
-    Point p = r.pt(t);
-    Vector n = (p - origin).to_vector().unit();
-
-    hit.set_point(p);
-    hit.set_t(t);
-
-    if (r.get_direction().dot(n) > 0) {
-        hit.set_front(true);
-        n = -n;
-        
-    } else hit.set_front(false);
-    
-    hit.set_normal(n);
-
-    return true;
+    return collide;
 
 }

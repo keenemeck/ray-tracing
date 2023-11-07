@@ -6,6 +6,10 @@
 #include "hitInfo.h"
 #include "interval.h"
 
+#include <vector>
+
+class Ray;
+
 class Sphere {
 
 public:
@@ -16,14 +20,14 @@ public:
     Point get_origin();
     double get_radius();
 
-    bool ray_collide(Ray& r, Interval& interval, HitInfo& hit);
-
 private:
 
     Point origin;
     double radius;
 
 };
+
+bool ray_collide(Ray& r, Interval& interval, std::vector<Sphere>& spheres, HitInfo& hit);
 
 
 #endif

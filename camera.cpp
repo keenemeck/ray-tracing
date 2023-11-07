@@ -45,18 +45,8 @@ void Camera::render(std::vector<Sphere>& spheres) {
 
                 Ray ray = get_ray(i, j);
 
-                HitInfo hit;
-                HitInfo closest_hit;
+                Color temp = ray_color(ray, spheres);
 
-                for (auto sphere: spheres) {
-
-                    bool collide = sphere.ray_collide(ray, interval, hit);
-
-                    if (collide && hit.get_t() < closest_hit.get_t()) closest_hit = hit;
-                    
-                }
-
-                Color temp = ray_color(ray, closest_hit);
                 color = color + temp;
 
             }

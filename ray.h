@@ -6,10 +6,15 @@
 #include "color.h"
 #include "hitInfo.h"
 #include "rand.h"
+#include "sphere.h"
+
+#include <vector>
+
+class Sphere;
 
 class Ray {
 
-friend Color ray_color(Ray& r, HitInfo& hit);
+friend Color ray_color(Ray& r, std::vector<Sphere>& spheres);
 
 public:
 
