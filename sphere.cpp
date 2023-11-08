@@ -3,10 +3,11 @@
 #include <iostream>
 
 Sphere::Sphere() : origin({0, 0, 0}), radius(0) {}
-Sphere::Sphere(Point _origin, double _radius) : origin(_origin), radius(_radius) {}
+Sphere::Sphere(Point _origin, double _radius, Material* _material) : origin(_origin), radius(_radius), material(_material) {}
 
 Point Sphere::get_origin() { return origin; }
 double Sphere::get_radius() { return radius; }
+Material* Sphere::get_material() {return material; }
 
 bool ray_collide(Ray& r, Interval& interval, std::vector<Sphere>& spheres, HitInfo& closest_hit) {
 
@@ -42,6 +43,8 @@ bool ray_collide(Ray& r, Interval& interval, std::vector<Sphere>& spheres, HitIn
 
                 hit.set_point(p);
                 hit.set_t(t);
+
+                hit.set_material(sphere.get_material());
 
                 if (r.get_direction().dot(n) > 0) {
                     hit.set_front(true);

@@ -13,19 +13,21 @@ Vector Ray::get_direction() { return direction; }
 
 Color ray_color(Ray& r, std::vector<Sphere>& spheres, int bounces) {
 
-    Interval interval(0.01, INFINITY);
+    Interval interval(0.001, INFINITY);
     HitInfo hit;
 
     if (ray_collide(r, interval, spheres, hit)) {
         
-        Vector n = hit.get_normal();
-        Vector direction = n + random_unit_vector();
+        Ray scattered;
+        Color attenuation;
 
-        Ray new_ray(hit.get_point(), direction);
+        // if hit object scatters light
+        if (hit.get_material()->scatter(r, hit, attenuation, scattered)) {
+            if (bounces <= 0) return Color(0,0,0);
+            return ray_color(scattered, spheres, bounces - 1) * attenuation;
+        }
 
-        if (bounces <= 0) return Color(0, 0, 0);
-
-        return ray_color(new_ray, spheres, bounces - 1) * 0.1;
+        return Color(0,0,0);
         
     }
 
@@ -33,7 +35,7 @@ Color ray_color(Ray& r, std::vector<Sphere>& spheres, int bounces) {
 
     double a = unit_vector.get_j() / 2 + 0.5;
 
-    Color c1(90, 183, 230);
+    Color c1(127.5, 178.5, 255);
     Color c2(255, 255, 255);
 
     double blendedRed = (1 - a) * c2.get_r() + a * c1.get_r();

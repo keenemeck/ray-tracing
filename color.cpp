@@ -26,12 +26,16 @@ void Color::write_color(std::ostream &out, int samples) {
     g *= factor;
 
     // linear -> gamma
-    r = 255 * pow(r / 255, 1 / 2.2);
-    g = 255 * pow(g / 255, 1 / 2.2);
-    b = 255 * pow(b / 255, 1 / 2.2);
+    r = 255 * sqrt(r / 255);
+    g = 255 * sqrt(g / 255);
+    b = 255 * sqrt(b / 255);
 
     Interval rgb(0, 255);
 
     out << round(rgb.clamp(r)) << ' ' << round(rgb.clamp(g)) << ' ' << round(rgb.clamp(b)) << ' ';
 
+}
+
+Color Color::operator*(Color& c) { 
+    return {r * c.r / 255, g * c.g / 255, b * c.b / 255}; 
 }

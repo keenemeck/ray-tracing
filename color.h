@@ -23,6 +23,7 @@ public:
     void write_color(std::ostream &out, int samples);
 
     Color operator*(double x);
+    Color operator*(Color& c);
     Color operator+(Color& c);
 
 private:

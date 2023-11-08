@@ -35,7 +35,8 @@ public:
     Point to_point();
 
     Vector unit();
-    double dot(Vector V);
+    double dot(Vector v);
+    Vector reflect(Vector v);
 
     bool near_zero();
 
