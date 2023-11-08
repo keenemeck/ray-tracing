@@ -25,7 +25,7 @@ Color ray_color(Ray& r, std::vector<Sphere>& spheres, int bounces) {
 
         if (bounces <= 0) return Color(0, 0, 0);
 
-        return ray_color(new_ray, spheres, bounces - 1) * 0.9;
+        return ray_color(new_ray, spheres, bounces - 1) * 0.1;
         
     }
 

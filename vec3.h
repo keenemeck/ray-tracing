@@ -37,6 +37,8 @@ public:
     Vector unit();
     double dot(Vector V);
 
+    bool near_zero();
+
 };
 
 

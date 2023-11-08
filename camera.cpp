@@ -7,6 +7,7 @@ void Camera::initialize() {
 
     focal_length = 1.0;
     viewport_height = 2.0;
+    bounces = 100;
 
     double viewport_width = viewport_height * aspect_ratio;
     image_width = image_height * aspect_ratio;
@@ -35,7 +36,7 @@ void Camera::render(std::vector<Sphere>& spheres) {
 
     for (int i = 0; i < image_height; i++) {
 
-        std::clog << image_height - i << " rows remaining.\n";
+        std::clog << (i * 100.0) / image_height << "%\n";
 
         for (int j = 0; j < image_width; j++) {  
 
@@ -45,7 +46,7 @@ void Camera::render(std::vector<Sphere>& spheres) {
 
                 Ray ray = get_ray(i, j);
 
-                Color temp = ray_color(ray, spheres, 10);
+                Color temp = ray_color(ray, spheres, bounces);
 
                 color = color + temp;
 
@@ -58,7 +59,7 @@ void Camera::render(std::vector<Sphere>& spheres) {
         std::cout << '\n';
     }
 
-    std::clog << "Done.\n";
+    std::clog << "100%\n";
 
 }
 

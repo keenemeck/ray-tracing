@@ -10,9 +10,10 @@ double random_double() {
 
 double random_double(double min, double max) {
 
-    static std::uniform_real_distribution<double> dist(min, max);
-    static std::mt19937 gen;
-    return dist(gen);
+    double range = max - min;
+    if (min < 0) min = -min;
+
+    return random_double() * range - min;
 
 }
 
@@ -28,7 +29,7 @@ Vector random_unit_vector() {
         current = randVec(-1, 1);
     }
 
-    return current.unit();;
+    return current.unit();
 
 }
 
