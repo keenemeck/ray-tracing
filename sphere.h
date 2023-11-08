@@ -5,25 +5,29 @@
 #include "ray.h"
 #include "hitInfo.h"
 #include "interval.h"
+#include "material.h"
 
 #include <vector>
 
 class Ray;
+class HitInfo;
 
 class Sphere {
 
 public:
 
     Sphere();
-    Sphere(Point origin, double radius);
+    Sphere(Point origin, double radius, Material material);
 
     Point get_origin();
     double get_radius();
+    Material get_material();
 
 private:
 
     Point origin;
     double radius;
+    Material& material;
 
 };
 

@@ -32,10 +32,13 @@ public:
     Vector operator-(Vector v);
     Vector operator*(double x);
     Vector operator/(double x);
+
     Point to_point();
 
     Vector unit();
     double dot(Vector V);
+    
+    bool near_zero();
 
 };
 

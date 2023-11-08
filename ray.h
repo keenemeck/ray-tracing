@@ -7,10 +7,12 @@
 #include "hitInfo.h"
 #include "rand.h"
 #include "sphere.h"
+#include "material.h"
 
 #include <vector>
 
 class Sphere;
+class Material;
 
 class Ray {
 

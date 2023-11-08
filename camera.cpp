@@ -7,6 +7,7 @@ void Camera::initialize() {
 
     focal_length = 1.0;
     viewport_height = 2.0;
+    bounces = 10;
 
     double viewport_width = viewport_height * aspect_ratio;
     image_width = image_height * aspect_ratio;
@@ -45,7 +46,7 @@ void Camera::render(std::vector<Sphere>& spheres) {
 
                 Ray ray = get_ray(i, j);
 
-                Color temp = ray_color(ray, spheres, 10);
+                Color temp = ray_color(ray, spheres, bounces);
 
                 color = color + temp;
 

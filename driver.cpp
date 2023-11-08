@@ -9,16 +9,19 @@
 #include "hitInfo.h"
 #include "camera.h"
 #include "rand.h"
+#include "material.h"
 
 
 int main() {
 
-    Camera camera(16.0 / 9.0, 400, 100);
+    Camera camera(16.0 / 9.0, 400, 1);
 
     std::vector<Sphere> spheres;
 
-    spheres.push_back({{0, 0, -1}, 0.5});
-    spheres.push_back({{0, -100.5, -1}, 100});
+    Material diffuse;
+
+    spheres.push_back({{0, 0, -1}, 0.5, diffuse});
+    spheres.push_back({{0, -100.5, -1}, 100, diffuse});
     
     camera.render(spheres); 
 

@@ -25,7 +25,7 @@ public:
 private:
 
     double aspect_ratio, focal_length, viewport_height;
-    int image_height, image_width, samples;
+    int image_height, image_width, samples, bounces;
     Point pixel_00, camera_center;
     Vector du, dv;
 

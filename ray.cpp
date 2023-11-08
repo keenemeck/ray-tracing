@@ -17,6 +17,13 @@ Color ray_color(Ray& r, std::vector<Sphere>& spheres, int bounces) {
     HitInfo hit;
 
     if (ray_collide(r, interval, spheres, hit)) {
+
+        Ray scattered;
+        Color attenuation;
+
+        if (hit.get_material().scatter(r, hit, attenuation, scattered))
+            return ray_color(scattered, spheres, bounces - 1) * 0.8;
+        return Color(0,0,0);
         
         Vector n = hit.get_normal();
         Vector direction = n + random_unit_vector();

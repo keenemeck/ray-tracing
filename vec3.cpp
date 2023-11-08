@@ -39,3 +39,11 @@ Vector Vector::unit() {
 }
 
 double Vector::dot(Vector v) { return i * v.i + j * v.j + k * v.k; }
+
+bool Vector::near_zero() {
+
+    double zero = 0.00000001;
+
+    return fabs(i < zero) && fabs(j < zero) && fabs(k < zero);
+
+}
