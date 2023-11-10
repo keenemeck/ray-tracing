@@ -1,6 +1,6 @@
 #include "ray.h"
 
-Ray::Ray() : origin({0, 0, 0}), direction({0, 0, 0}) {}
+Ray::Ray() {}
 Ray::Ray(Point _origin, Vector _direction) : origin(_origin), direction(_direction) {}
 
 Point Ray::pt(double time) {
@@ -21,9 +21,10 @@ Color ray_color(Ray& r, std::vector<Sphere>& spheres, int bounces) {
         Ray scattered;
         Color attenuation;
 
+        if (bounces <= 0) return Color(0, 0, 0);
+
         // if hit object scatters light
         if (hit.get_material()->scatter(r, hit, attenuation, scattered)) {
-            if (bounces <= 0) return Color(0,0,0);
             return ray_color(scattered, spheres, bounces - 1) * attenuation;
         }
 

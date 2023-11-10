@@ -23,10 +23,10 @@ Vector randVec(double min, double max) { return Vector(random_double(min, max), 
 
 Vector random_unit_vector() {
 
-    Vector current = randVec(-1, 1);
+    Vector current = randVec(-1.0, 1.0);
 
     while (sqrt(current.dot(current)) > 1) {
-        current = randVec(-1, 1);
+        current = randVec(-1.0, 1.0);
     }
 
     return current.unit();

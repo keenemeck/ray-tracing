@@ -15,6 +15,7 @@ void Color::set_g(double g) { this->g = g; }
 void Color::set_b(double b) { this->b = b; }
 
 Color Color::operator*(double x) { return {r * x, g * x, b * x}; }
+Color Color::operator*(Color& c) { return {r * c.r / 255, g * c.g / 255, b * c.b / 255}; }
 Color Color::operator+(Color& c) { return {r + c.r, g + c.g, b + c.b}; }
 
 void Color::write_color(std::ostream &out, int samples) {
@@ -25,17 +26,15 @@ void Color::write_color(std::ostream &out, int samples) {
     b *= factor;
     g *= factor;
 
+    double gamma = 1 / 2.2;
+
     // linear -> gamma
-    r = 255 * sqrt(r / 255);
-    g = 255 * sqrt(g / 255);
-    b = 255 * sqrt(b / 255);
+    r = 255 * pow(r / 255, gamma);
+    g = 255 * pow(g / 255, gamma);
+    b = 255 * pow(b / 255, gamma);
 
     Interval rgb(0, 255);
 
     out << round(rgb.clamp(r)) << ' ' << round(rgb.clamp(g)) << ' ' << round(rgb.clamp(b)) << ' ';
 
-}
-
-Color Color::operator*(Color& c) { 
-    return {r * c.r / 255, g * c.g / 255, b * c.b / 255}; 
 }

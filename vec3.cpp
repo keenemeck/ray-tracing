@@ -40,16 +40,12 @@ Vector Vector::unit() {
 
 double Vector::dot(Vector v) { return i * v.i + j * v.j + k * v.k; }
 
-Vector Vector::reflect(Vector v) {
-
-    return v - (v * 2) * this->dot(v);
-
-}
+Vector Vector::reflect(Vector v) { return *this - v * 2 * this->dot(v); }
 
 bool Vector::near_zero() {
 
     double zero = 0.00000001;
 
-    return fabs(i < zero) && fabs(j < zero) && fabs(k < zero);
+    return (fabs(i) < zero) && (fabs(j) < zero) && (fabs(k) < zero);
 
 }
