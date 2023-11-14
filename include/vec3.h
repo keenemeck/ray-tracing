@@ -37,6 +37,7 @@ public:
     Vector unit();
     double dot(Vector v);
     Vector reflect(Vector v);
+    Vector refract(Vector normal, double eta_ratio);
 
     bool near_zero();
 

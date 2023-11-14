@@ -42,6 +42,17 @@ double Vector::dot(Vector v) { return i * v.i + j * v.j + k * v.k; }
 
 Vector Vector::reflect(Vector v) { return *this - v * 2 * this->dot(v); }
 
+Vector Vector::refract(Vector normal, double eta_ratio) {
+
+    double cos_theta = std::min(this->dot(-normal), 1.0);
+
+    Vector perpendicular = (*this + normal * cos_theta) * eta_ratio;
+    Vector parallel = normal * -sqrt(fabs(1.0 - perpendicular.dot(perpendicular)));
+
+    return perpendicular + parallel;
+
+}
+
 bool Vector::near_zero() {
 
     double zero = 0.00000001;
