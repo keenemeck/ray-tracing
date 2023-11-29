@@ -19,7 +19,7 @@
 <h3 align="center">Ray Tracing</h3>
 
   <p align="center">
-    Implements ray tracing software, fully written in C++s
+    Implements ray tracing software, fully written in C++
     <br />
   </p>
 </div>
@@ -53,9 +53,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Ray Tracing Screen Shot][product-screenshot]]
-
-This project implements ray tracing software in C++, following the book, *Ray Tracing in One Weekend*, by Peter Shirley, Trevor David Black, and Steve Hollasch. 
+This project implements ray tracing software in C++ following the book, *Ray Tracing in One Weekend*, by Peter Shirley, Trevor David Black, and Steve Hollasch. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -70,7 +68,7 @@ This project implements ray tracing software in C++, following the book, *Ray Tr
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get the ray tracer up and running with default settings (including camera and scene), follow the installation.
+To run the ray tracer with default settings, follow the installation.
 
 ### Prerequisites
 
