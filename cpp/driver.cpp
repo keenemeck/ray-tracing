@@ -14,6 +14,14 @@
 
 int main() {
 
+    /*  Camera(aspect ratio, image width, anti-aliasing samples) 
+     *
+     *  The aspect ratio refers to the ratio between the image width to the image height
+     *  The image width is the width of the image in pixels
+     *  The AA samples are the amount of rays drawn at each pixel, (higher number is more rays,
+     *  which means a smoother result). 
+     */
+
     // Default camera settings
     Camera camera(16.0 / 9.0, 400, 100);
 

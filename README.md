@@ -13,13 +13,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/keenemeck/ray-tracing">
-    <img src="logo.png" alt="Logo" width="208" height="117">
+    <img src="render.png" alt="Logo" width="208" height="117">
   </a>
 
 <h3 align="center">Ray Tracing</h3>
 
   <p align="center">
-    Implements ray tracing software, written fully in C++
+    Implements ray tracing software, fully written in C++s
     <br />
   </p>
 </div>
@@ -44,25 +44,20 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
 
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Ray Tracing Screen Shot][product-screenshot]]
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `keenemeck`, `ray-tracing`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+This project implements ray tracing software in C++, following the book, *Ray Tracing in One Weekend*, by Peter Shirley, Trevor David Black, and Steve Hollasch. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 ### Built With
@@ -72,20 +67,14 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To get the ray tracer up and running with default settings (including camera and scene), follow the installation.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+Requires a C++ compiler, version 11 or higher
 
 ### Installation
 
@@ -93,33 +82,22 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    git clone https://github.com/keenemeck/ray-tracing.git
    ```
-2. 
+2. Compile the program
+   ```sh
+   g++ -I include -std=c++11 cpp/*.cpp -o ../driver && .././driver > image.ppm
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+To change the scene presented and camera settings, open the `driver.cpp` file located in `/cpp`, and change the camera settings to those desired.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [ ] Fix glass textures
-- [ ] Functioning camera
-
-See the [open issues](https://github.com/keenemeck/ray-tracing/issues) for a full list of proposed features (and known issues).
+The output will be written to `image.ppm`, in the repo's root directory.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- LICENSE -->
@@ -130,22 +108,11 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- CONTACT -->
-## Contact
-
-Project Link: [https://github.com/keenemeck/ray-tracing](https://github.com/keenemeck/ray-tracing)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* [Ray Tracing in One Weekend](https://github.com/RayTracing/raytracing.github.io/)
+* [Img Shields](https://shields.io)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
