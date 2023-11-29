@@ -2,8 +2,6 @@
 
 <!-- PROJECT SHIELDS -->
 [![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
@@ -23,7 +21,6 @@
     <br />
   </p>
 </div>
-
 
 
 <!-- TABLE OF CONTENTS -->
@@ -56,7 +53,6 @@
 This project implements ray tracing software in C++ following the book, *Ray Tracing in One Weekend*, by Peter Shirley, Trevor David Black, and Steve Hollasch. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 ### Built With
 
@@ -129,7 +125,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [license-shield]: https://img.shields.io/github/license/keenemeck/ray-tracing.svg?style=for-the-badge
 [license-url]: https://github.com/keenemeck/ray-tracing/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
+[linkedin-url]: https://linkedin.com/in/keenem
 [product-screenshot]: render.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
@@ -148,4 +144,4 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
 [Cpp.com]: https://img.shields.io/badge/C++-00599C.svg?&style=for-the-badge&logo=cplusplus&logoColor=white
-[Cpp-url]: https://isocpp.org/
+[Cpp-url]: https://isocpp.org
