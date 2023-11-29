@@ -15,7 +15,7 @@
 int main() {
 
     // Default camera settings
-    Camera camera(16.0 / 9.0, 400, 10);
+    Camera camera(16.0 / 9.0, 400, 100);
 
     // List of spheres
     std::vector<Sphere> spheres;
