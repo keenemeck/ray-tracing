@@ -14,7 +14,7 @@ bool ray_collide(Ray& r, Interval& interval, std::vector<Sphere>& spheres, HitIn
     HitInfo hit;
     bool collide = false;
 
-    for (auto sphere: spheres) {      
+    for (auto& sphere: spheres) {      
     
         Vector a_minus_c = (r.get_origin() - sphere.get_origin()).to_vector();
 
@@ -39,22 +39,27 @@ bool ray_collide(Ray& r, Interval& interval, std::vector<Sphere>& spheres, HitIn
                 collide = true;
 
                 Point p = r.pt(t);
-                Vector n = (p - sphere.get_origin()).to_vector().unit();
+                Vector n = (p - sphere.get_origin()).to_vector() / sphere.get_radius();
 
                 hit.set_point(p);
                 hit.set_t(t);
 
                 hit.set_material(sphere.get_material());
 
-                if (r.get_direction().dot(n) > 0) {
+                if (r.get_direction().dot(n) < 0) {
                     hit.set_front(true);
-                    n = -n;     
-                } else hit.set_front(false);
-                
+                } else {
+                    hit.set_front(false);
+                    n = -n;
+                }
+
                 hit.set_normal(n);
 
-                if (hit.get_t() < closest_hit.get_t()) closest_hit = hit;
+                if (hit.get_t() < closest_hit.get_t()) {
+                    closest_hit = hit;
+                }
             }
+
         }
     }
 

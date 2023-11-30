@@ -23,7 +23,7 @@ int main() {
      */
 
     // Default camera settings
-    Camera camera(16.0 / 9.0, 400, 100);
+    Camera camera(16.0 / 9.0, 720, 500);
 
     // List of spheres
     std::vector<Sphere> spheres;
@@ -36,7 +36,8 @@ int main() {
 
     // Adding spheres to scene with coordinates
     spheres.push_back({{-1, 0, -1}, 0.5, &material_left});
-    spheres.push_back({{0, 0, -1}, -0.5, &material_center});
+    spheres.push_back({{-1, 0, -1}, -0.4, &material_left});
+    spheres.push_back({{0, 0, -1}, 0.5, &material_center});
     spheres.push_back({{1, 0, -1}, 0.5, &material_right});
     spheres.push_back({{0, -100.5, -1}, 100, &material_ground});
     

@@ -13,6 +13,8 @@ Vector Ray::get_direction() { return direction; }
 
 Color ray_color(Ray& r, std::vector<Sphere>& spheres, int bounces) {
 
+    if (bounces <= 0) return Color(0, 0, 0);
+
     Interval interval(0.001, INFINITY);
     HitInfo hit;
 
@@ -21,7 +23,7 @@ Color ray_color(Ray& r, std::vector<Sphere>& spheres, int bounces) {
         Ray scattered;
         Color attenuation;
 
-        if (bounces <= 0) return Color(0, 0, 0);
+        //return Color((hit.get_normal().get_i() + 1) * 127.5, (hit.get_normal().get_j() + 1) * 127.5, (hit.get_normal().get_k() + 1) * 127.5);
 
         // if hit object scatters light
         if (hit.get_material()->scatter(r, hit, attenuation, scattered)) {

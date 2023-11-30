@@ -19,14 +19,15 @@ bool Material::scatter(Ray& r, HitInfo& hit, Color& attenuation, Ray& scattered)
         scattered = Ray(hit.get_point(), reflected_direction + random_unit_vector() * fuzz);
 
         attenuation = albedo;
-        return scattered.get_direction().dot(hit.get_normal());
+        return scattered.get_direction().dot(hit.get_normal()) > 0;
 
     }
-
-    if (refraction_index != 1) { 
+    
+    else if (refraction_index != 1) { 
 
         attenuation = Color(255, 255, 255);
-        double eta_ratio = hit.get_front() ? refraction_index : (1.0 / refraction_index);
+
+        double eta_ratio = hit.get_front() ? (1.0 / refraction_index) : refraction_index;
 
         Vector unit = r.get_direction().unit();
 
@@ -37,7 +38,7 @@ bool Material::scatter(Ray& r, HitInfo& hit, Color& attenuation, Ray& scattered)
         bool schlick_reflect = (r0 + (1.0 - r0) * pow((1.0 - cos_theta), 5)) > random_double();
 
         // reflect if schnell's law has no solution - otherwise refract
-        Vector direction = (eta_ratio * sin_theta > 1.0 || !schlick_reflect) ? unit.reflect(hit.get_normal()) : unit.refract(hit.get_normal(), eta_ratio);
+        Vector direction = (eta_ratio * sin_theta > 1.0 || schlick_reflect) ? unit.reflect(hit.get_normal()) : unit.refract(hit.get_normal(), eta_ratio);
 
         scattered = Ray(hit.get_point(), direction);
         return true;
