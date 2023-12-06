@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <chrono>
 
 #include "vec3.h"
 #include "point.h"
@@ -23,7 +24,7 @@ int main() {
      */
 
     // Default camera settings
-    Camera camera(16.0 / 9.0, 720, 500);
+    Camera camera(16.0 / 9.0, 400, 10);
 
     // List of spheres
     std::vector<Sphere> spheres;
@@ -36,12 +37,16 @@ int main() {
 
     // Adding spheres to scene with coordinates
     spheres.push_back({{-1, 0, -1}, 0.5, &material_left});
-    spheres.push_back({{-1, 0, -1}, -0.4, &material_left});
+    spheres.push_back({{-3, 0, -3}, 0.5, &material_left});
     spheres.push_back({{0, 0, -1}, 0.5, &material_center});
     spheres.push_back({{1, 0, -1}, 0.5, &material_right});
     spheres.push_back({{0, -100.5, -1}, 100, &material_ground});
     
+    auto start = std::chrono::high_resolution_clock::now();
     camera.render(spheres); 
+    auto stop = std::chrono::high_resolution_clock::now();
+
+    std::clog << std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count() / 1000000.0;
 
     return 0;
     

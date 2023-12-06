@@ -28,8 +28,7 @@ public:
 
 private:
 
-    double r, g, b;
-
+    double a[3];
 
 };
 

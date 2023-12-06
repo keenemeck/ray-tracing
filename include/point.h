@@ -13,7 +13,7 @@ friend std::ostream& operator<<(std::ostream& stream, Point& p);
 
 private:
 
-    double x, y, z;
+    double a[3];
 
 public:
 
@@ -28,8 +28,8 @@ public:
     void set_y(double y);
     void set_z(double z);
 
-    Point operator+(Point p);
-    Point operator-(Point p);
+    Point operator+(const Point& p);
+    Point operator-(const Point& p);
 
     Vector to_vector();
 

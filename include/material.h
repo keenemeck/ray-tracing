@@ -17,6 +17,7 @@ public:
     Material(Color albedo, bool reflective);
     Material(Color albedo, bool reflective, double fuzz);
     Material(double refraction_index);
+    Material(double refraction_index, Color albedo);
 
     Color get_albedo();
     bool get_reflective();

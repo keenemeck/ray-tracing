@@ -5,6 +5,7 @@ Material::Material(Color _albedo) : albedo(_albedo), reflective(false), refracti
 Material::Material(Color _albedo, bool _reflective) : albedo(_albedo), reflective(_reflective), fuzz(0), refraction_index(1) {}
 Material::Material(Color _albedo, bool _reflective, double _fuzz) : albedo(_albedo), reflective(_reflective), fuzz(_fuzz), refraction_index(1) {}
 Material::Material(double _refraction_index) : albedo(Color(255, 255, 255)), reflective(false), refraction_index(_refraction_index) {}
+Material::Material(double _refraction_index, Color _albedo) : albedo(_albedo), reflective(false), refraction_index(_refraction_index) {}
 
 Color Material::get_albedo() { return albedo; }
 bool Material::get_reflective() { return reflective; }
@@ -25,7 +26,7 @@ bool Material::scatter(Ray& r, HitInfo& hit, Color& attenuation, Ray& scattered)
     
     else if (refraction_index != 1) { 
 
-        attenuation = Color(255, 255, 255);
+        attenuation = albedo;
 
         double eta_ratio = hit.get_front() ? (1.0 / refraction_index) : refraction_index;
 
