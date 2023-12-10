@@ -52,13 +52,9 @@
 
 This project implements ray tracing software in C++ following the book, *Ray Tracing in One Weekend*, by Peter Shirley, Trevor David Black, and Steve Hollasch. 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ### Built With
 
 * [![Cpp][Cpp.com]][Cpp-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- GETTING STARTED -->
@@ -76,12 +72,10 @@ Requires a C++ compiler, version 11 or higher
    ```sh
    git clone https://github.com/keenemeck/ray-tracing.git
    ```
-2. Compile the program
+2. Compile and run the program
    ```sh
    g++ -I include -std=c++11 cpp/*.cpp -o ../driver && .././driver > image.ppm
    ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- USAGE EXAMPLES -->
@@ -91,25 +85,17 @@ To change the scene presented and camera settings, open the `driver.cpp` file lo
 
 The output will be written to `image.ppm`, in the repo's root directory.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
 * [Ray Tracing in One Weekend](https://github.com/RayTracing/raytracing.github.io/)
-* [Img Shields](https://shields.io)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
