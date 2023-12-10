@@ -18,7 +18,7 @@ public:
     Camera(double ratio, int height, int samples);
 
     void initialize();
-    void render(std::vector<Sphere>& spheres);
+    void render(std::vector<Sphere> spheres);
 
     Ray get_ray(int i, int j);
 

@@ -26,6 +26,7 @@ void Color::write_color(std::ostream &out, int samples) {
     a[1] *= factor;
     a[2] *= factor;
 
+    // Default gamma is 1 / 2.2, but this looks wrong to me
     double gamma = 1 / 2.2;
 
     // linear -> gamma

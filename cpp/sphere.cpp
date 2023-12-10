@@ -3,11 +3,15 @@
 #include <iostream>
 
 Sphere::Sphere() : origin({0, 0, 0}), radius(0) {}
-Sphere::Sphere(Point _origin, double _radius, Material* _material) : origin(_origin), radius(_radius), material(_material) {}
+Sphere::Sphere(Point _origin, double _radius, Material* _material) : origin(_origin), radius(_radius), material(_material) {
+    Vector rvec(radius, radius, radius);
+    bbox = new aabb(origin - rvec.to_point(), origin + rvec.to_point());
+}
 
 Point Sphere::get_origin() { return origin; }
 double Sphere::get_radius() { return radius; }
-Material* Sphere::get_material() {return material; }
+Material* Sphere::get_material() { return material; }
+aabb* Sphere::get_bbox() { return bbox; }
 
 bool ray_collide(Ray& r, Interval& interval, std::vector<Sphere>& spheres, HitInfo& closest_hit) {
 

@@ -11,7 +11,8 @@
 #include "camera.h"
 #include "rand.h"
 #include "color.h"
-
+#include "aabb.h"
+#include "objects.h"
 
 int main() {
 
@@ -24,26 +25,28 @@ int main() {
      */
 
     // Default camera settings
-    Camera camera(16.0 / 9.0, 400, 10);
+    Camera camera(16.0 / 9.0, 400, 500);
 
-    // List of spheres
-    std::vector<Sphere> spheres;
+    objectList objects;
 
     // Examples of materials
-    Material material_ground(Color(204, 204, 0));
-    Material material_center(Color(17, 60, 246));
-    Material material_left(1.5);
-    Material material_right(Color(120, 47, 64), true);
+    Material ground(Color(204, 204, 204));
+    Material blueDiffuse(Color(17, 60, 246));
+    Material orangeDiffuse(Color(246, 60, 17));
+    Material light(true, Color(245, 242, 213));
+    Material reflect(Color(255, 255, 255), true);
+    Material glass(1.5);
+    
 
     // Adding spheres to scene with coordinates
-    spheres.push_back({{-1, 0, -1}, 0.5, &material_left});
-    spheres.push_back({{-3, 0, -3}, 0.5, &material_left});
-    spheres.push_back({{0, 0, -1}, 0.5, &material_center});
-    spheres.push_back({{1, 0, -1}, 0.5, &material_right});
-    spheres.push_back({{0, -100.5, -1}, 100, &material_ground});
+    objects.add({{0, 30, -10}, 20, &light});
+    objects.add({{-1, 0, -1}, 0.5, &blueDiffuse});
+    objects.add({{0, 0, -1}, 0.5, &reflect});
+    objects.add({{1, 0, -1}, 0.5, &glass});
+    objects.add({{0, -100.5, -1}, 100, &ground});
     
     auto start = std::chrono::high_resolution_clock::now();
-    camera.render(spheres); 
+    camera.render(objects.get_spheres()); 
     auto stop = std::chrono::high_resolution_clock::now();
 
     std::clog << std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count() / 1000000.0;

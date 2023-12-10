@@ -18,33 +18,28 @@ Color ray_color(Ray& r, std::vector<Sphere>& spheres, int bounces) {
     Interval interval(0.001, INFINITY);
     HitInfo hit;
 
-    if (ray_collide(r, interval, spheres, hit)) {
+    // Change background color here
+    if (!ray_collide(r, interval, spheres, hit)) {
+
+
+        // Vector a = r.get_direction().unit();
+        // return Color((a.get_i() + 1) * 127.5, (a.get_j() + 1) * 127.5, (a.get_k() + 1) * 127.5);
+
+        return Color(0, 0, 0);
+
+    }
         
-        Ray scattered;
-        Color attenuation;
+    Ray scattered;
+    Color attenuation;
 
-        //return Color((hit.get_normal().get_i() + 1) * 127.5, (hit.get_normal().get_j() + 1) * 127.5, (hit.get_normal().get_k() + 1) * 127.5);
+    Color emit_color = hit.get_material()->emitted();
 
-        // if hit object scatters light
-        if (hit.get_material()->scatter(r, hit, attenuation, scattered)) {
-            return ray_color(scattered, spheres, bounces - 1) * attenuation;
-        }
-
-        return Color(0,0,0);
-        
+    if (!hit.get_material()->scatter(r, hit, attenuation, scattered)) {
+        return emit_color;
     }
 
-    Vector unit_vector = r.get_direction().unit();
+    Color scatter_color = ray_color(scattered, spheres, bounces - 1) * attenuation;
 
-    double a = unit_vector.get_j() / 2 + 0.5;
-
-    Color c1(127.5, 178.5, 255);
-    Color c2(255, 255, 255);
-
-    double blendedRed = (1 - a) * c2.get_r() + a * c1.get_r();
-    double blendedGreen = (1 - a) * c2.get_g() + a * c1.get_g();
-    double blendedBlue = (1 - a) * c2.get_b() + a * c1.get_b();
-
-    return {blendedRed, blendedGreen, blendedBlue};
+    return emit_color + scatter_color;
 
 }

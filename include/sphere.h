@@ -6,12 +6,15 @@
 #include "hitInfo.h"
 #include "interval.h"
 #include "material.h"
+#include "aabb.h"
+#include "vec3.h"
 
 #include <vector>
 
 class Ray;
 class HitInfo;
 class Material;
+class aabb;
 
 class Sphere {
 
@@ -23,12 +26,14 @@ public:
     Point get_origin();
     double get_radius();
     Material* get_material();
+    aabb* get_bbox();
 
 private:
 
     Point origin;
     double radius;
     Material* material;
+    aabb* bbox;
 
 };
 

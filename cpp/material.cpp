@@ -6,11 +6,13 @@ Material::Material(Color _albedo, bool _reflective) : albedo(_albedo), reflectiv
 Material::Material(Color _albedo, bool _reflective, double _fuzz) : albedo(_albedo), reflective(_reflective), fuzz(_fuzz), refraction_index(1) {}
 Material::Material(double _refraction_index) : albedo(Color(255, 255, 255)), reflective(false), refraction_index(_refraction_index) {}
 Material::Material(double _refraction_index, Color _albedo) : albedo(_albedo), reflective(false), refraction_index(_refraction_index) {}
+Material::Material(bool _emissive, Color _albedo) : emissive(_emissive), albedo(_albedo) {}
 
 Color Material::get_albedo() { return albedo; }
 bool Material::get_reflective() { return reflective; }
 double Material::get_fuzz() { return fuzz; }
 double Material::get_refraction_index() { return refraction_index; }
+bool Material::get_emissive() { return emissive; }
 
 bool Material::scatter(Ray& r, HitInfo& hit, Color& attenuation, Ray& scattered) {
 
@@ -22,6 +24,12 @@ bool Material::scatter(Ray& r, HitInfo& hit, Color& attenuation, Ray& scattered)
         attenuation = albedo;
         return scattered.get_direction().dot(hit.get_normal()) > 0;
 
+    }
+
+    else if (emissive == true) {
+
+        return false;
+        
     }
     
     else if (refraction_index != 1) { 
@@ -57,3 +65,5 @@ bool Material::scatter(Ray& r, HitInfo& hit, Color& attenuation, Ray& scattered)
 
 
 }
+
+Color Material::emitted() { return emissive ? albedo : Color(0, 0, 0); }

@@ -26,7 +26,7 @@ void Camera::initialize() {
 
 }
 
-void Camera::render(std::vector<Sphere>& spheres) {
+void Camera::render(std::vector<Sphere> spheres) {
 
     initialize();
 
