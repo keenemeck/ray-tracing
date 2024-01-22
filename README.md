@@ -72,7 +72,11 @@ Requires a C++ compiler, version 11 or higher
    ```sh
    git clone https://github.com/keenemeck/ray-tracing.git
    ```
-2. Compile and run the program
+2. Change into the ray-tracing directory
+   ```sh
+   cd ray-tracing
+   ```
+3. Compile and run the program
    ```sh
    g++ -I include -std=c++11 cpp/*.cpp -o ../driver && .././driver > image.ppm
    ```
