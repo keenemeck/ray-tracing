@@ -1,4 +1,5 @@
 #include "vec3.h"
+#include <cmath>
 
 // Default constructors for vectors
 Vector::Vector() : a{0, 0, 0} {}
@@ -44,7 +45,7 @@ Point Vector::to_point() { return {a[0], a[1], a[2]}; }
 
 Vector Vector::unit() {
 
-    double magnitude = sqrt(a[0] * a[0] + a[1] * a[1] + a[2] * a[2]);
+    double magnitude = std::sqrt(a[0] * a[0] + a[1] * a[1] + a[2] * a[2]);
     return {a[0] / magnitude, a[1] / magnitude, a[2] / magnitude};
 
 }
@@ -58,7 +59,7 @@ Vector Vector::refract(const Vector& normal, double eta_ratio) {
     double cos_theta = std::min(this->dot(-normal), 1.0);
 
     Vector perpendicular = (*this + normal * cos_theta) * eta_ratio;
-    Vector parallel = normal * -sqrt(fabs(1.0 - perpendicular.dot(perpendicular)));
+    Vector parallel = normal * -std::sqrt(fabs(1.0 - perpendicular.dot(perpendicular)));
 
     return perpendicular + parallel;
 
