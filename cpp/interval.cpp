@@ -3,7 +3,7 @@
 
 #include "interval.h"
 
-Interval::Interval() : min(-INFINITY), max(INFINITY) {}
+Interval::Interval() : min(-INT_MAX), max(INT_MAX) {}
 Interval::Interval(double _min, double _max) : min(_min), max(_max) {}
 Interval::Interval(const Interval& a, const Interval& b) : min(std::min(a.min, b.min)), max(std::max(a.max, b.max)) {}
 
