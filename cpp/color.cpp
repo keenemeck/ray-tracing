@@ -1,4 +1,5 @@
 #include "color.h"
+#include <cmath>
 
 // Default constructors for colors
 Color::Color() : a{0, 0, 0} {}
@@ -30,9 +31,9 @@ void Color::write_color(std::ostream &out, int samples) {
     double gamma = 1 / 2.2;
 
     // linear -> gamma
-    a[0] = 255 * pow(a[0] / 255, gamma);
-    a[1] = 255 * pow(a[1] / 255, gamma);
-    a[2] = 255 * pow(a[2] / 255, gamma);
+    a[0] = 255 * std::pow(a[0] / 255, gamma);
+    a[1] = 255 * std::pow(a[1] / 255, gamma);
+    a[2] = 255 * std::pow(a[2] / 255, gamma);
 
     Interval rgb(0, 255);
 
